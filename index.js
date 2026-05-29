@@ -373,19 +373,36 @@ async function handleLeagueCommand(interaction) {
       flags: MessageFlags.Ephemeral,
     });
 
-    // Edit embed to cancelled
+    // Edit original embed in-place — same fields, title changed, button disabled
     try {
       const channel = await client.channels.fetch(league.channelId);
       const msg = await channel.messages.fetch(league.messageId);
-      await msg.edit({
-        embeds: [
-          new EmbedBuilder()
-            .setTitle("League Cancelled")
-            .setDescription(`League **${leagueId}** was cancelled by <@${interaction.user.id}>.`)
-            .setColor(0xed4245),
-        ],
-        components: [],
-      });
+      const spotsLeft = league.totalSpots - league.players.length;
+      const playerMentions = league.players.map((id) => `<@${id}>`).join("\n") || "None";
+      const cancelledEmbed = new EmbedBuilder()
+        .setTitle("League Cancelled")
+        .addFields(
+          { name: "Format",     value: league.format,                         inline: true },
+          { name: "Match Type", value: league.matchType,                      inline: true },
+          { name: "Perks",      value: league.perks,                          inline: true },
+          { name: "Region",     value: league.region,                         inline: true },
+          { name: "Host",       value: `<@${league.hostId}>`,                 inline: true },
+          { name: "Spots Left", value: `${spotsLeft} / ${league.totalSpots}`, inline: true },
+          { name: "Players",    value: playerMentions },
+          { name: "League ID",  value: league.id }
+        )
+        .setFooter({ text: `Cancelled by: ${interaction.user.username}` })
+        .setColor(0xed4245);
+
+      const disabledRow = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId(`cancelled_${leagueId}`)
+          .setLabel("League Cancelled")
+          .setStyle(ButtonStyle.Danger)
+          .setDisabled(true)
+      );
+
+      await msg.edit({ embeds: [cancelledEmbed], components: [disabledRow] });
     } catch (e) {
       console.error("Error editing cancelled league message:", e);
     }
