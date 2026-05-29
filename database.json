@@ -1,3 +1,22 @@
 {
-  "leagues": {}
+  "leagues": {
+    "DQQYHO": {
+      "id": "DQQYHO",
+      "hostId": "1180944141291634728",
+      "format": "2v2",
+      "matchType": "Swift Game",
+      "perks": "Perks",
+      "region": "Asia",
+      "players": [
+        "1180944141291634728"
+      ],
+      "totalSpots": 4,
+      "messageId": null,
+      "channelId": "1509081893956620458",
+      "guildId": "1458453457143857184",
+      "threadId": null,
+      "active": true,
+      "createdAt": 1780050984307
+    }
+  }
 }
