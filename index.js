@@ -249,8 +249,9 @@ async function handleLeagueCommand(interaction) {
     const region    = interaction.options.getString("region");
     const db        = loadDB();
 
+    // A league counts as active only if it was fully created (has a messageId)
     const existing = Object.values(db.leagues).find(
-      (l) => l.hostId === interaction.user.id && l.active
+      (l) => l.hostId === interaction.user.id && l.active && l.messageId
     );
     if (existing) {
       return interaction.reply({
@@ -258,6 +259,14 @@ async function handleLeagueCommand(interaction) {
         flags: MessageFlags.Ephemeral,
       });
     }
+
+    // Auto-clean any ghost leagues for this user (created but never finished)
+    for (const [id, l] of Object.entries(db.leagues)) {
+      if (l.hostId === interaction.user.id && l.active && !l.messageId) {
+        db.leagues[id].active = false;
+      }
+    }
+    saveDB(db);
 
     let leagueId;
     do { leagueId = generateLeagueId(); } while (db.leagues[leagueId]);
