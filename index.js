@@ -390,14 +390,13 @@ async function handleLeagueCommand(interaction) {
       console.error("Error editing cancelled league message:", e);
     }
 
-    // Archive the private thread
+    // Delete the private thread
     if (league.threadId) {
       try {
         const thread = await client.channels.fetch(league.threadId);
-        await thread.send(`League **${leagueId}** has been cancelled. This thread is now closed.`);
-        await thread.setArchived(true);
+        await thread.delete(`League ${leagueId} cancelled`);
       } catch (e) {
-        console.error("Error archiving thread:", e);
+        console.error("Error deleting thread:", e);
       }
     }
   }
