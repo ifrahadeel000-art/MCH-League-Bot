@@ -432,6 +432,7 @@ async function handleLeagueCommand(interaction) {
 
 async function handleJoinButton(interaction) {
   const leagueId = interaction.customId.replace("join_", "");
+  console.log(`[JOIN] User ${interaction.user.id} (${interaction.user.username}) attempting to join league ${leagueId}`);
   const db = loadDB();
   const league = db.leagues[leagueId];
 
