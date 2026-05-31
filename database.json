@@ -1,68 +1,15 @@
 {
-  "leagues": {
-    "DQQYHO": {
-      "id": "DQQYHO",
-      "hostId": "1180944141291634728",
-      "format": "2v2",
-      "matchType": "Swift Game",
-      "perks": "Perks",
-      "region": "Asia",
-      "players": ["1180944141291634728"],
-      "totalSpots": 4,
-      "messageId": null,
-      "channelId": "1509081893956620458",
-      "guildId": "1458453457143857184",
-      "threadId": null,
-      "active": false,
-      "createdAt": 1780050984307
-    },
-    "WFEHXK": {
-      "id": "WFEHXK",
-      "hostId": "1180944141291634728",
-      "format": "2v2",
-      "matchType": "Swift Game",
-      "perks": "Perks",
-      "region": "Asia",
-      "players": ["1180944141291634728"],
-      "totalSpots": 4,
-      "messageId": null,
-      "channelId": "1509081893956620458",
-      "guildId": "1458453457143875184",
-      "threadId": null,
-      "active": false,
-      "createdAt": 1780051852349
-    },
-    "IPABKD": {
-      "id": "IPABKD",
-      "hostId": "974094102956236820",
-      "format": "2v2",
-      "matchType": "Swift Game",
-      "perks": "Perks",
-      "region": "North America",
-      "players": ["974094102956236820"],
-      "totalSpots": 4,
-      "messageId": null,
-      "channelId": "1509081893956620458",
-      "guildId": "1458453457143857184",
-      "threadId": null,
-      "active": false,
-      "createdAt": 1780051995216
-    },
-    "WAVELO": {
-      "id": "WAVELO",
-      "hostId": "1180944141291634728",
-      "format": "2v2",
-      "matchType": "Swift Game",
-      "perks": "Perks",
-      "region": "Asia",
-      "players": ["1180944141291634728"],
-      "totalSpots": 4,
-      "messageId": null,
-      "channelId": "1509081893956620458",
-      "guildId": "1458453457143857184",
-      "threadId": null,
-      "active": false,
-      "createdAt": 1780052514914
-    }
+  "name": "league-bot",
+  "version": "1.0.0",
+  "description": "Discord league hosting bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
